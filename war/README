@@ -1,0 +1,20 @@
+TODO
+rebuild with GWTWrapperHelper
+
+class
+fieldName
+methodName
+
+HashBuilder
+fieldName
+builder?
+
+How to use
+maybe filenames is useless anymore.
+
+download newer version
+drop src folder
+
+remove inner parent classname like(xxx$innner)
+
+need more listener option

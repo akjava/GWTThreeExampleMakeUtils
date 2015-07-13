@@ -1,0 +1,114 @@
+/*
+ * gwt-wrap three.js
+ * 
+ * Copyright (c) 2013 akimisaki3@gmail.com
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ 
+ 
+ based Three.js r63
+ https://github.com/mrdoob/three.js
+ The MIT License
+
+Copyright (c) 2010-2013 three.js Authors. All rights reserved.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+  
+ */
+package com.akjava.gwt.three.client.math;
+
+import com.google.gwt.core.client.JavaScriptObject;
+
+
+public class Euler extends JavaScriptObject{
+	protected Euler() {
+	}
+
+public final native Euler set(Object x,Object y,Object z,Object order)/*-{
+return this.set(x,y,z,order);
+}-*/;
+
+public final native Euler copy(Object euler)/*-{
+return this.copy(euler);
+}-*/;
+
+public final native Euler setFromRotationMatrix(Object m,Object order)/*-{
+return this.setFromRotationMatrix(m,order);
+}-*/;
+
+public final native Euler setFromQuaternion(Object q,Object order,Object update)/*-{
+return this.setFromQuaternion(q,order,update);
+}-*/;
+
+public final native Object reorder()/*-{
+return this.reorder();
+}-*/;
+
+public final native Euler fromArray(Object array)/*-{
+return this.fromArray(array);
+}-*/;
+
+public final native Object toArray()/*-{
+return this.toArray();
+}-*/;
+
+public final native Object equals(Object euler)/*-{
+return this.equals(euler);
+}-*/;
+
+public final native Object clone()/*-{
+return this.clone();
+}-*/;
+public final native Object getX()/*-{
+return this.x;
+}-*/;
+
+public final native Object getY()/*-{
+return this.y;
+}-*/;
+
+public final native Object getZ()/*-{
+return this.z;
+}-*/;
+
+public final native Object getOrder()/*-{
+return this.order;
+}-*/;
+public final native void setX(Object value)/*-{
+this.x=value;
+}-*/;
+
+public final native void setY(Object value)/*-{
+this.y=value;
+}-*/;
+
+public final native void setZ(Object value)/*-{
+this.z=value;
+}-*/;
+
+public final native void setOrder(Object value)/*-{
+this.order=value;
+}-*/;
+
+
+}

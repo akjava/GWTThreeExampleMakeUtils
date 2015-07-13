@@ -1,0 +1,10 @@
+id
+uuid
+name
+attributes
+dynamic
+offsets
+boundingBox
+boundingSphere
+hasTangents
+morphTargets

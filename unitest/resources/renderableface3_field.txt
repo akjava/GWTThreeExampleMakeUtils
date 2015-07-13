@@ -1,0 +1,14 @@
+id
+v1
+v2
+v3
+centroidModel
+normalModel
+normalModelView
+vertexNormalsLength
+vertexNormalsModel
+vertexNormalsModelView
+color
+material
+uvs
+z

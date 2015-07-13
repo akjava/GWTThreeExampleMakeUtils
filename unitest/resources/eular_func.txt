@@ -1,0 +1,9 @@
+set
+copy
+setFromRotationMatrix
+setFromQuaternion
+reorder
+fromArray
+toArray
+equals
+clone

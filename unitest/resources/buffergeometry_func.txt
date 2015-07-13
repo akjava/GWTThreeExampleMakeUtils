@@ -1,0 +1,9 @@
+addAttribute
+applyMatrix
+computeBoundingBox
+computeBoundingSphere
+computeVertexNormals
+normalizeNormals
+computeTangents
+clone
+dispose
