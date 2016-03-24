@@ -7,7 +7,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/3"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/GWTLib2011"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/html5gwt"/>
 	<classpathentry kind="lib" path="C:/java/lib/guava-18.0.jar" sourcepath="C:/java/lib/guava-18.0-sources.jar"/>
 	<classpathentry kind="lib" path="C:/java/lib/guava-gwt-18.0.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>

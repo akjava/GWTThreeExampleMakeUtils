@@ -4,6 +4,8 @@ import com.akjava.gwt.threejsmaker.client.oneline.OneLineConvertPanel.GetSetFiel
 import com.akjava.gwt.threejsmaker.client.oneline.OneLineConvertPanel.JsParamConverter;
 import com.akjava.gwt.threejsmaker.client.oneline.OneLineConvertPanel.SpecialReplaceConverter;
 import com.akjava.gwt.threejsmaker.client.oneline.OneLineConverter;
+import com.akjava.gwt.threejsmaker.client.oneline.OneLineConverters.ForConverter;
+import com.akjava.gwt.threejsmaker.client.oneline.OneLineConverters.UniformsConverter;
 import com.google.gwt.junit.client.GWTTestCase;
 
 public class OneLineConverterTest extends GWTTestCase {                       
@@ -53,6 +55,27 @@ public class OneLineConverterTest extends GWTTestCase {
 			  );
   }
   
+  public void testUniformsConverter1() {                                              
+	  doTest(new UniformsConverter(),
+			  "effectBleach.uniforms[ \"opacity\" ].setValue(0.95);",
+			  "effectBleach.getUniforms().set(\"opacity\",0.95);"
+			  );
+  }
+  
+  public void ForConverter1() {                                              
+	  doTest(new ForConverter(),
+			  "for ( i = 0; i < xgrid; i ++ )",
+			  "for(int i = 0; i < xgrid; i ++ )"
+			  );
+  }
+  
+  public void ForConverter2() {                                              
+	  doTest(new ForConverter(),
+			  "for ( var i = 0; i < 100; i ++ ) {",
+			  "for (int i = 0; i < 100; i ++ ) {"
+			  );
+  }
+
   public void testJsParamConverter1() {                                              
 	  doTest(new JsParamConverter(),
 			  "new THREE.Mesh( geometry, new THREE.MeshLambertMaterial( { color: 0x606060, morphTargets: true } ) );",

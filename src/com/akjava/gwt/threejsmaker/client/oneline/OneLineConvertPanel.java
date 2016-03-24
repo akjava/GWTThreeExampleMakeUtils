@@ -1,14 +1,19 @@
 package com.akjava.gwt.threejsmaker.client.oneline;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 import com.akjava.gwt.lib.client.LogUtils;
 import com.akjava.gwt.lib.client.widget.PasteValueReceiveArea;
 import com.akjava.gwt.lib.client.widget.cell.SimpleCellTable;
+import com.akjava.gwt.threejsmaker.client.oneline.OneLineConverters.ForConverter;
+import com.akjava.gwt.threejsmaker.client.oneline.OneLineConverters.Uniforms2Converter;
+import com.akjava.gwt.threejsmaker.client.oneline.OneLineConverters.UniformsConverter;
 import com.akjava.lib.common.form.StaticValidators;
 import com.akjava.lib.common.utils.StringUtils;
 import com.akjava.lib.common.utils.ValuesUtils;
+import com.google.common.base.Function;
 import com.google.common.base.Joiner;
 import com.google.common.base.Optional;
 import com.google.common.base.Splitter;
@@ -49,6 +54,8 @@ public class OneLineConvertPanel extends DockLayoutPanel{
 	private TextArea output;
 
 	private PasteValueReceiveArea pasteArea;
+
+	private TextArea temporary;
 	public List<OneLineConverter> getDatas() {
 		return datas;
 	}
@@ -132,7 +139,12 @@ public class OneLineConvertPanel extends DockLayoutPanel{
 		SetArrayDataConverter arrayConverter2=new SetArrayDataConverter(true);
 		datas.add(arrayConverter2);
 		
+		
 		datas.add(new ArrayToNativeConverter());
+		
+		datas.add(new UniformsConverter());
+		datas.add(new Uniforms2Converter());
+		datas.add(new ForConverter());
 		
 		setDatas(datas);
 		
@@ -153,6 +165,35 @@ public class OneLineConvertPanel extends DockLayoutPanel{
 		//input
 		VerticalPanel center=new VerticalPanel();
 		add(center);
+		
+		
+		
+		
+		temporary = new TextArea();
+		temporary.setSize("600px","100px");
+		
+		center.add(createTemporaryButtons(temporary));
+		
+		HorizontalPanel h1=new HorizontalPanel();
+		center.add(h1);
+		h1.add(new Label("[Temporary]"));
+		
+		center.add(temporary);
+		
+		
+		Button copyToInputBt=new Button("copy to input",new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {
+				pasteText=temporary.getText();
+				updateOutput();
+			}
+		});
+		h1.add(copyToInputBt);
+		
+		
+		
+		
+		
 		
 		center.add(new Label("[Input]"));
 		pasteArea = new PasteValueReceiveArea();
@@ -237,6 +278,64 @@ public class OneLineConvertPanel extends DockLayoutPanel{
 	
 	public interface SelectionListener{
 		public void select(Set<OneLineConverter> selections);
+	}
+	
+	private VerticalPanel createTemporaryButtons(final TextArea temporary){
+		VerticalPanel panel=new VerticalPanel();
+		
+		HorizontalPanel temporaryButtons=new HorizontalPanel();
+		panel.add(temporaryButtons);
+		
+		Button singleLine=new Button("single line",new ClickHandler() {
+			
+			@Override
+			public void onClick(ClickEvent event) {
+				String text=temporary.getText();
+				List<String> lines=ValuesUtils.toListLines(text);
+				String converted=FluentIterable.from(lines).transform(new Function<String, String>() {
+					@Override
+					public String apply(String input) {
+						return input.trim();
+					}
+				}).join(Joiner.on(""));
+				
+				temporary.setText(converted);
+			}
+		});
+		
+		temporaryButtons.add(singleLine);
+		
+		Button eqToMulti=new Button("= to multi set",new ClickHandler() {
+			
+			@Override
+			public void onClick(ClickEvent event) {
+				String text=temporary.getText();
+				
+				List<String> values=new ArrayList<String>();
+				for(String v:text.split("=")){
+					values.add(v);
+				}
+				
+				List<String> results=new ArrayList<String>();
+				
+				if(values.size()>2){
+					String last=values.get(values.size()-1);
+					for(int i=0;i<values.size()-1;i++){
+						results.add(values.get(i)+"="+last);
+					}
+					
+					temporary.setText(Joiner.on("\n").join(results));
+				}
+				
+				
+				
+			}
+		});
+		
+		temporaryButtons.add(eqToMulti);
+		
+		
+		return panel;
 	}
 	
 	public class VarToClassConverter extends OneLineConverter{

@@ -14,6 +14,8 @@ import com.akjava.gwt.html5.client.file.webkit.DirectoryCallback;
 import com.akjava.gwt.html5.client.file.webkit.FileEntry;
 import com.akjava.gwt.html5.client.file.webkit.FilePathCallback;
 import com.akjava.gwt.html5.client.file.webkit.Item;
+import com.akjava.gwt.lib.client.LogUtils;
+import com.akjava.gwt.lib.client.widget.PasteValueReceiveArea;
 import com.akjava.gwt.threejsmaker.client.oneline.OneLineConvertPanel;
 import com.akjava.gwt.threejsmaker.client.resources.Bundles;
 import com.google.common.base.Function;
@@ -27,6 +29,8 @@ import com.google.gwt.event.dom.client.DragOverEvent;
 import com.google.gwt.event.dom.client.DragOverHandler;
 import com.google.gwt.event.dom.client.DropEvent;
 import com.google.gwt.event.dom.client.DropHandler;
+import com.google.gwt.event.logical.shared.ValueChangeEvent;
+import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.cellview.client.CellList;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FormPanel;
@@ -125,7 +129,30 @@ public class ThreeJsMaker implements EntryPoint {
 					}
 				}
 			});
-		
+		 flist.add(new Button("Clear All",new ClickHandler() {
+				@Override
+				public void onClick(ClickEvent event) {
+					files.clear();
+					updateList();
+				}
+			}));
+		 
+		 PasteValueReceiveArea pasteHere=new PasteValueReceiveArea();
+		 pasteHere.setText("Paste Here");
+		 pasteHere.addValueChangeHandler(new ValueChangeHandler<String>() {
+			
+			@Override
+			public void onValueChange(ValueChangeEvent<String> event) {
+				FileNameAndText ftext=new FileNameAndText("commoon.js","");
+				files.add(ftext);
+				
+				convertText(event.getValue(), ftext);
+				
+				updateList();
+				
+			}
+		});
+		 flist.add(pasteHere);
 		 
 		 flist.add(new Button("Download",new ClickHandler() {
 			@Override
@@ -236,6 +263,16 @@ public class ThreeJsMaker implements EntryPoint {
 		reader.readAsText(file, "UTF-8");
 		
 	}
+	
+	//for manual convert
+	private void convertText(String input,FileNameAndText ftext){
+		String packageName=getPackage(ftext.getName());
+		//String packageName="dummy";
+		JSClass jsClass=JSClassParser.parseJSClass(input, packageName);
+		
+		ftext.setText(JSConverter.convertCode(classBase, jsClass));
+	}
+	
 	protected void updateList() {
 		cellList.setRowData(files);
 	}
