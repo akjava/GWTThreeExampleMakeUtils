@@ -1,0 +1,4 @@
+public ${u+value} extends JavaScriptObject{
+protected ${u+value}(){}
+
+}

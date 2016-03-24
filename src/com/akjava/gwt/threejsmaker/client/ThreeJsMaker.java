@@ -18,6 +18,7 @@ import com.akjava.gwt.lib.client.LogUtils;
 import com.akjava.gwt.lib.client.widget.PasteValueReceiveArea;
 import com.akjava.gwt.threejsmaker.client.oneline.OneLineConvertPanel;
 import com.akjava.gwt.threejsmaker.client.resources.Bundles;
+import com.akjava.gwt.threejsmaker.client.simple.SimpleJsConvertPanel;
 import com.google.common.base.Function;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
@@ -84,9 +85,13 @@ public class ThreeJsMaker implements EntryPoint {
 		//dropBase.add(rootTab);
 		
 		
+		SimpleJsConvertPanel simplePanel=new SimpleJsConvertPanel();
+		rootTab.add(simplePanel,"simple");
+		
 		OneLineConvertPanel onelinePanel=new OneLineConvertPanel();
 		rootTab.add(onelinePanel,"oneline");
 		//onelinePanel.setSize("400px", "400px");
+		
 		
 		
 		

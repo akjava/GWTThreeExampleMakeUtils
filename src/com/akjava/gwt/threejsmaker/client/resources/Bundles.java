@@ -8,4 +8,10 @@ public interface Bundles extends ClientBundle {
 Bundles INSTANCE=GWT.create(Bundles.class);
 	TextResource classbase();
 	TextResource filenames();
+	TextResource wrap();
+	TextResource wrapreturn();
+	TextResource get();
+	TextResource set();
+	TextResource getset();
+	TextResource jsclass();
 }

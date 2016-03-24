@@ -1,0 +1,3 @@
+public final  native void set${u+value}(JavaScriptObject  param)/*-{
+this.${value}=param;
+}-*/;

@@ -1,0 +1,7 @@
+public final  native JavaScriptObject get${u+value}()/*-{
+return this.${value};
+}-*/;
+
+public final  native void set${u+value}(JavaScriptObject  param)/*-{
+this.${value}=param;
+}-*/;
