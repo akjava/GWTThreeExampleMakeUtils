@@ -98,7 +98,7 @@ public class SimpleJsConvertPanel extends VerticalPanel{
 		}
 		List<String> results=Lists.newArrayList();
 		for(String line:lines){
-			String result=TemplateUtils.createText(template, line);
+			String result=TemplateUtils.createAdvancedText(template, line);
 			results.add(result);
 		}
 		

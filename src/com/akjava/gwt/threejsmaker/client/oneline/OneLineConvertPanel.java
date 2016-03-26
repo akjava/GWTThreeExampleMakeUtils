@@ -7,6 +7,7 @@ import java.util.Set;
 import com.akjava.gwt.lib.client.LogUtils;
 import com.akjava.gwt.lib.client.widget.PasteValueReceiveArea;
 import com.akjava.gwt.lib.client.widget.cell.SimpleCellTable;
+import com.akjava.gwt.threejsmaker.client.oneline.OneLineConverters.ArrayAccessConverter;
 import com.akjava.gwt.threejsmaker.client.oneline.OneLineConverters.ForConverter;
 import com.akjava.gwt.threejsmaker.client.oneline.OneLineConverters.Uniforms2Converter;
 import com.akjava.gwt.threejsmaker.client.oneline.OneLineConverters.UniformsConverter;
@@ -145,6 +146,8 @@ public class OneLineConvertPanel extends DockLayoutPanel{
 		datas.add(new UniformsConverter());
 		datas.add(new Uniforms2Converter());
 		datas.add(new ForConverter());
+		
+		datas.add(new ArrayAccessConverter());
 		
 		setDatas(datas);
 		

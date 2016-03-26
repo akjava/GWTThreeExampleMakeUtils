@@ -142,4 +142,42 @@ public class OneLineConverters {
 			return "for( to for(int ";
 		}
 	}
+	
+	public static class ArrayAccessConverter extends OneLineConverter{
+		RegExp regExp = RegExp.compile("\\[(\\d+?)\\]");
+		@Override
+		public String apply(String input) {
+			if(input.isEmpty()){
+				return "";
+			}
+
+			String line=input;
+			boolean matchFound=false;
+			
+			MatchResult matcher = regExp.exec(line);
+			matchFound = matcher != null;
+			if(matchFound){
+				
+				 String indexNumber=matcher.getGroup(1).trim();
+				
+				 List<List<String>> lists=Lists.newArrayList();
+				 lists.add(Lists.newArrayList(matcher.getGroup(0), ".get("+indexNumber+")"));
+				 line=StringUtils.replaceStrings(line,lists);
+				 
+			}
+			
+			
+			
+			
+			
+			
+			
+			return line;
+		}
+
+		@Override
+		public String getName() {
+			return "array access converter [0] >> .get(0)";
+		}
+	}
 }
